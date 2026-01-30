@@ -401,6 +401,17 @@ DoublyLLL<T> :: DoublyLLL()
     this->iCount = 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name :     InsertFirst
+//  Input :             Data of node
+//  Output :            Nothing
+//  Description :       Used to insert node at first position
+//  Author :            Nikhil Ramesh Ahire
+//  Date :              07/01/2026
+//
+/////////////////////////////////////////////////////////////////////////////
+
 template<class T>
 void DoublyLLL<T> ::InsertFirst(T no)
 {
@@ -420,6 +431,17 @@ void DoublyLLL<T> ::InsertFirst(T no)
     }
     this->iCount++;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  Function Name :     InsertLast
+//  Input :             Data of node
+//  Output :            Nothing
+//  Description :       Used to insert node at last position
+//  Author :            Nikhil Ramesh Ahire
+//  Date :              06/01/2026
+//
+/////////////////////////////////////////////////////////////////////////////
 
 template<class T>
 void DoublyLLL<T> ::InsertLast(T no) 
@@ -1359,3 +1381,4 @@ int main()
     
     return 0;
 }
+
