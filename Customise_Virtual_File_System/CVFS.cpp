@@ -175,7 +175,7 @@ void InitialiseUAREA()
    {
         uareaobj.UFDT[i] = NULL;
    }
-    printf("Marvellous CVFS : UAREA gets initialised succesfully\n");
+    printf("Kernel CVFS : UAREA gets initialised succesfully\n");
 }
 
 //////////////////////////////////////////////////////////
@@ -192,7 +192,7 @@ void InitialiseSuperBlock()
     superobj.TotalInodes = MAXINODE;
     superobj.FreeInodes = MAXINODE;
 
-    printf("Marvellous CVFS : Super block gets initialised succesfully\n");
+    printf("Kernel CVFS : Super block gets initialised succesfully\n");
 }
 
 //////////////////////////////////////////////////////////
@@ -236,7 +236,7 @@ void CreateDILB()
         }
     }
 
-    printf("Marvellous CVFS : DILB created succesfully\n");
+    printf("Kernel CVFS : DILB created succesfully\n");
 }
 
 //////////////////////////////////////////////////////////
@@ -251,7 +251,7 @@ void CreateDILB()
 
 void StartAuxillaryDataInitilisation()
 {
-    strcpy(bootobj.Information,"Booting process of Marvellous CVFS is done");
+    strcpy(bootobj.Information,"Booting process of Kernel CVFS is done");
 
     printf("%s\n",bootobj.Information);
 
@@ -261,7 +261,7 @@ void StartAuxillaryDataInitilisation()
 
     InitialiseUAREA();
 
-    printf("Marvellous CVFS : Auxillary data initialised succesfully\n");
+    printf("Kernel CVFS : Auxillary data initialised succesfully\n");
 }
 
 //////////////////////////////////////////////////////////
@@ -276,7 +276,7 @@ void StartAuxillaryDataInitilisation()
 void DisplayHelp()
 {
     printf("-----------------------------------------------\n");
-    printf("---------- Marvellous CVFS Help Page ----------\n");
+    printf("---------- Kernel CVFS Help Page ----------\n");
     printf("-----------------------------------------------\n");
 
     printf("man    : It is used to display manual page\n");
@@ -485,7 +485,7 @@ void LsFile()
     PINODE temp = head;
 
     printf("-----------------------------------------------\n");
-    printf("------ Marvellous CVFS Files Information ------\n");
+    printf("------ Kernel CVFS Files Information ------\n");
     printf("-----------------------------------------------\n");
 
     while(temp != NULL)
@@ -709,7 +709,7 @@ int main()
     StartAuxillaryDataInitilisation();
 
     printf("-----------------------------------------------\n");
-    printf("----- Marvellous CVFS started succesfully -----\n");
+    printf("----- Kernel CVFS started succesfully -----\n");
     printf("-----------------------------------------------\n");
     
     // Infinite Listening Shell
@@ -731,7 +731,7 @@ int main()
             // Marvellous CVFS : > exit
             if(strcmp("exit",Command[0]) == 0)
             {
-                printf("Thank you for using Marvellous CVFS\n");
+                printf("Thank you for using Kernel CVFS\n");
                 printf("Deallocating all the allocated resources\n");
 
                 break;
