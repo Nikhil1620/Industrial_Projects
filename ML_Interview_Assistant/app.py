@@ -8,7 +8,8 @@ from utils.rag import build_vectorstore, get_relevant_docs
 
 import time
 
-def get_chat_response(model, messages, system_prompt):
+
+def get_chat_response(model, messages, system_prompt):    ## Function to get a response from our AI model
     try:
         formatted_messages = [{"role": "system", "content": system_prompt}]
         formatted_messages.extend(messages)
@@ -22,8 +23,9 @@ def get_chat_response(model, messages, system_prompt):
 
 
 def chat_page():
-    st.title("🤖 ML Interview Assistant")
+    st.title("🤖 ML Interview Assistant")   ## Display the title
 
+    # Sidebar
     with st.sidebar:
         st.session_state.response_mode = st.selectbox(
             "Response Mode", ["Concise", "Detailed"], key="mode"
@@ -31,7 +33,7 @@ def chat_page():
 
         uploaded_file = st.file_uploader("Upload Resume (PDF)", type="pdf")
 
-        if uploaded_file is not None:
+        if uploaded_file is not None:    ## saves the uploaded PDF in the document folder
 
             os.makedirs("documents", exist_ok=True)
 
@@ -40,9 +42,10 @@ def chat_page():
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
+            ## Build index only if not already built
             if "vectorstore" not in st.session_state:
                 build_vectorstore(file_path)
-                st.success("indexed successfully!")
+                st.success("indexed successfully!")    ## it shows when the pdf is uploaded
 
         if st.button("🗑️ Clear Chat & Index"):
             st.session_state.messages = []
@@ -60,8 +63,9 @@ def chat_page():
     )
 
     if "messages" not in st.session_state:
-        st.session_state.messages = []
+        st.session_state.messages = []    ## it saves the chat history
 
+    ## Display previous chat
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
@@ -75,8 +79,9 @@ def chat_page():
 
         with st.chat_message("assistant"):
 
-            with st.spinner("Thinking..."):
+            with st.spinner("Thinking..."):  ## after the query to show the running of backend
 
+                # 🔹 Retrieve resume chunks from RAG
                 docs = get_relevant_docs(prompt)
 
                 if docs:
@@ -120,5 +125,4 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
