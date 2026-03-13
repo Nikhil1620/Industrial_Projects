@@ -5,7 +5,6 @@ from langchain_groq import ChatGroq
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-# Load environment variables from .env
 load_dotenv()
 
 def get_chatgroq_model():
@@ -23,4 +22,5 @@ def get_chatgroq_model():
 
 
 def get_toolbound_model():
+
     return get_chatgroq_model()
