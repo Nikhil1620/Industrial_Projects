@@ -8,7 +8,6 @@ from utils.rag import build_vectorstore, get_relevant_docs
 
 import time
 
-
 def get_chat_response(model, messages, system_prompt):
     try:
         formatted_messages = [{"role": "system", "content": system_prompt}]
@@ -25,7 +24,6 @@ def get_chat_response(model, messages, system_prompt):
 def chat_page():
     st.title("🤖 ML Interview Assistant")
 
-    # Sidebar
     with st.sidebar:
         st.session_state.response_mode = st.selectbox(
             "Response Mode", ["Concise", "Detailed"], key="mode"
@@ -42,7 +40,6 @@ def chat_page():
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
-            # Build index only if not already built
             if "vectorstore" not in st.session_state:
                 build_vectorstore(file_path)
                 st.success("indexed successfully!")
@@ -65,7 +62,6 @@ def chat_page():
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Display previous chat
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
@@ -81,7 +77,6 @@ def chat_page():
 
             with st.spinner("Thinking..."):
 
-                # 🔹 Retrieve resume chunks from RAG
                 docs = get_relevant_docs(prompt)
 
                 if docs:
@@ -125,4 +120,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
