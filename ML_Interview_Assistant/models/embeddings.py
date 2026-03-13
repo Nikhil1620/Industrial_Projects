@@ -4,7 +4,6 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# Global variable
 vectorstore = None
 
 
@@ -25,5 +24,6 @@ def build_vectorstore(pdf_path):
     texts = [doc.page_content for doc in documents]
 
     embeddings = load_embeddings()
+
 
     vectorstore = FAISS.from_texts(texts, embeddings)
