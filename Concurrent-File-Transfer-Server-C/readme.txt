@@ -6,174 +6,140 @@ Technology: C Programming (Linux System Programming)
 
 Project Overview
 --------------------------------------------------------
-This project is a Concurrent FTP Server implemented in C
-on Linux that allows multiple clients to connect to the
-server and download files simultaneously.
+The Concurrent FTP Server is a Linux-based client-server
+application developed using C and TCP socket programming.
 
-The server uses TCP socket programming and process-based
-concurrency using fork() to handle multiple client
-connections at the same time.
+This system allows multiple clients to connect to a server
+and download files concurrently. The server uses
+process-based concurrency (fork()) to handle multiple
+client requests simultaneously.
+
+Each client sends a file request to the server, and the
+server validates the request and transfers the file
+reliably using TCP communication.
 
 This project demonstrates practical implementation of
 Linux networking, file system operations, and process
 management using system calls.
 
-It also implements a simple protocol-based file transfer
-mechanism where the server first sends a header and then
-transmits the file data in chunks.
 
---------------------------------------------------------
 Key Features
 --------------------------------------------------------
 
 1. Multi-Client Support (Concurrency)
-   - Supports multiple clients at the same time
-   - Uses fork() to create a child process for each client
-   - Enables parallel file transfers
+   - Supports multiple clients simultaneously.
+   - Uses fork() to create a child process for each
+     client connection.
+   - Enables parallel file transfers.
 
-2. Reliable File Transfer using TCP
-   - Uses TCP socket communication
-   - Client sends a file request
-   - Server validates and sends the requested file
+2. File Transfer using TCP
+   - Reliable communication using TCP sockets.
+   - Client sends file request to the server.
+   - Server validates and transfers the file.
 
 3. Simple Protocol Design
-   The server sends a header before file transfer:
+   Communication protocol used:
 
        OK <file_size>
-
-   If the file is not available:
-
        ERR
 
-4. Linux System Call Usage
+   - "OK" indicates the file is available.
+   - "ERR" indicates the file was not found.
 
-   File Subsystem
-   - open()
-   - read()
-   - close()
-   - stat()
+   After sending the header, the server transfers
+   the file in chunks.
 
-   Network Subsystem
-   - socket()
-   - bind()
-   - listen()
-   - accept()
-   - connect()
-   - send()
-   - recv()
+4. Linux System Calls Used
 
-   Process Subsystem
-   - fork()
-   - exit()
+   Networking:
+   socket()
+   bind()
+   listen()
+   accept()
+   connect()
+
+   File Handling:
+   open()
+   read()
+   write()
+   stat()
+   close()
+
+   Process Management:
+   fork()
+   exit()
 
 5. Error Handling
-   Handles different error conditions such as:
+   The system handles several cases:
    - File not found
    - Invalid file request
-   - Client disconnect
+   - Client disconnection
    - Permission errors
 
---------------------------------------------------------
-Learning Outcomes
---------------------------------------------------------
 
-• Understanding of Linux TCP/IP socket programming
-• Practical implementation of client-server architecture
-• Experience with process-based concurrency using fork()
-• File transfer implementation using chunk-based reading
-• Protocol design (header + payload communication)
-• Hands-on practice with Linux system calls
-
---------------------------------------------------------
 Project Structure
 --------------------------------------------------------
 
-server.c
-    Concurrent FTP server implementation
+Concurrent-FTP-Server
+│
+├── server.c
+├── client.c
+├── README.txt
+└── sample_files/
 
-client.c
-    Client application to request and download files
 
-README.txt
-    Project documentation
-
---------------------------------------------------------
 Compilation and Execution
 --------------------------------------------------------
 
 Step 1: Compile the Server
 
-    gcc server.c -o server
+gcc server.c -o server
 
 Step 2: Run the Server
 
-    ./server 9090
+./server 9000
 
 Step 3: Compile the Client
 
-    gcc client.c -o client
+gcc client.c -o client
 
 Step 4: Run the Client
 
-    ./client <server_ip> <port> <filename>
+./client <server_ip> <port> <filename>
 
 Example:
 
-    ./client 127.0.0.1 9090 Demo.txt
+./client 127.0.0.1 9000 Demo.txt
 
---------------------------------------------------------
+
 Example Execution
 --------------------------------------------------------
 
 Server Terminal
 
-    $ gcc server.c -o server
-    $ ./server 9090
+$ gcc server.c -o server
+$ ./server 9000
 
-    Server started...
-    Waiting for clients...
+Server started...
+Waiting for client connections...
+
 
 Client Terminal
 
-    $ gcc client.c -o client
-    $ ./client 127.0.0.1 9090 Demo.txt
+$ gcc client.c -o client
+$ ./client 127.0.0.1 9000 Demo.txt
 
-    OK 1234
-    File received successfully.
+OK 1024
+File received successfully.
 
---------------------------------------------------------
+
 Concurrency Test
 --------------------------------------------------------
 
-Multiple clients can download files simultaneously:
+Multiple clients can download files simultaneously.
 
-    ./client 127.0.0.1 9090 A.txt
-    ./client 127.0.0.1 9090 B.txt
-    ./client 127.0.0.1 9090 C.txt
+Example:
 
-Each client is handled by a separate process.
-
---------------------------------------------------------
-Interview Explanation
---------------------------------------------------------
-
-"I developed a Concurrent FTP Server in C on Linux that
-allows multiple clients to download files simultaneously
-using TCP socket programming.
-
-The server uses Linux system calls like socket, bind,
-listen, and accept for networking operations and open,
-read, stat, and close for file handling.
-
-To support concurrency, the server creates a new child
-process using fork() for each client request. This
-ensures that multiple clients can download files in
-parallel.
-
-I also designed a simple protocol where the server first
-sends a header such as 'OK <file_size>' and then
-transfers the file in chunks.
-
-This project helped me gain hands-on experience with
-Linux networking, system programming, process
-management, and client-server architecture."
+./client 127.0.0.1 9000 A.txt
+./client 127.0.0.1 9000 B.txt
+./client 127.0.0.1 9000 C.txt
