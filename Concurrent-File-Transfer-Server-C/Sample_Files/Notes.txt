@@ -1,0 +1,5 @@
+Networking Concepts Practiced:
+- Socket Programming
+- Client Server Architecture
+- TCP Communication
+- Process based concurrency using fork()

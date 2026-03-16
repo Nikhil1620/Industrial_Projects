@@ -1,0 +1,2 @@
+This is a demo file for testing the Concurrent FTP Server.
+If you can download this file successfully, the server is working correctly.

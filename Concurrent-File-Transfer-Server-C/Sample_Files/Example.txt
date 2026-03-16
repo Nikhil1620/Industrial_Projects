@@ -1,0 +1,3 @@
+[INFO] Server started
+[INFO] Client connected
+[INFO] File transfer completed
