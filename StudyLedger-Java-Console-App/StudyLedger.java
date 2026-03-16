@@ -91,7 +91,7 @@ class StudyTracker
             return;
         }
 
-        System.out.println("-- Log report of Marvellous Study Tracker -");
+        System.out.println("-- Log report of StudyLedger--");
         System.out.println("-------------------------------------------");
 
         for(StudyLog s : Database)
@@ -112,7 +112,7 @@ class StudyTracker
             return;
         }
         
-        String Filename = "MarvellousStudyTracker.csv";
+        String Filename = "StudyLedger.csv";
 
         try(FileWriter fwobj = new FileWriter(Filename))
         {
@@ -233,7 +233,7 @@ class MarvellousStudyTracker
         StudyTracker stobj = new StudyTracker();
 
         System.out.println("-------------------------------------------");
-        System.out.println("--- Welcome to Marvellous Study Tracker ---");
+        System.out.println("--- Welcome to StudyLedger App ---");
         System.out.println("-------------------------------------------");
 
         int iChoice = 0;
@@ -280,7 +280,7 @@ class MarvellousStudyTracker
                 // Exit the application
                 case 6:
                     System.out.println("-------------------------------------------");
-                    System.out.println("Thank you for using Marvellous Study Tracker");
+                    System.out.println("Thank you for using StudyLedger");
                     System.out.println("-------------------------------------------");
 
                     break;
