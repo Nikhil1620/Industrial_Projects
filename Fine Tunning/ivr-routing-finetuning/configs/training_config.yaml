@@ -1,0 +1,26 @@
+model_name_or_path: Qwen/Qwen3-8B-Instruct
+max_seq_length: 512
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+learning_rate: 2e-4
+num_train_epochs: 3
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+optim: paged_adamw_8bit
+logging_steps: 10
+save_steps: 100
+eval_steps: 100
+warmup_steps: 10
+lr_scheduler_type: cosine
+output_dir: ./adapters
+save_total_limit: 3
+fp16: true
+bf16: false
+gradient_checkpointing: true
+max_grad_norm: 0.3
+weight_decay: 0.01
+seed: 42
+report_to: ["wandb", "tensorboard"]
+run_name: ivr-routing-finetuning
